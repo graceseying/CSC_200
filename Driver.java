@@ -5,9 +5,45 @@ public class Driver
 		String s = "hello";
 		String s2 = "elephant";
 		String s3 = "c10wn3d";
-		System.out.println(Driver.removeVowels(s));
-		System.out.println(Driver.removeConsonants(s2));
-		System.out.println(Driver.removeDigits(s3));
+		String integers = "12345";
+		System.out.println(Driver.removeVowels(s2));
+		System.out.println(Driver.stringToInt(integers));
+		
+		
+	}
+	
+	//return integer from char parameter
+	static int charToInt(char c)
+	{
+		return "0123456789".indexOf(c);
+	}
+	
+	//converts s (string) into an int
+	static int stringToInt(String s)
+	{
+		int answer = 0;
+		int currentPlace = 1;
+		for(int i = s.length() - 1; i >= 0; i--)
+		{
+			answer = Driver.charToInt(s.charAt(i)) * currentPlace; 
+			answer = s.charAt(i++) + 1;
+			answer = currentPlace * 10;
+		}
+		return answer;
+	}
+	
+	static String removeChars(String s, String charsToRemove)
+	{
+		String answer = "";
+		
+		for(int i = 0; i < s.length(); i++)
+		{
+			if(charsToRemove.indexOf(s.charAt(i)) == -1)
+			{
+				answer = answer + s.charAt(i);
+			}
+		}
+		return answer;
 	}
 	
 	//removes all of the vowels from the String parameter
@@ -15,47 +51,20 @@ public class Driver
 	//hello -> hll
 	static String removeVowels(String s)
 	{	
-		String noVowels = "";
-		for(int i = 0; i < s.length(); i++)
-		{
-			char c = s.charAt(i);
-			if(c == 'b' || c == 'c' || c == 'd' || c == 'f' || c == 'g' || c == 'h' || c == 'j' || c == 'k' || c == 'l' || c == 'm' || c == 'n' || c == 'p' || c == 'q' || c == 'r' || c == 's' || c == 't' || c == 'v' || c == 'w' || c == 'x' || c == 'y' || c == 'z')
-			{
-				noVowels = noVowels + s.charAt(i);
-			}
-		}
-		return noVowels;
+		return Driver.removeChars(s, "aeiouAEIOU");
 	}
 	
 	//returns a new String with all of the consonants removed
 	//hello -> eo
 	static String removeConsonants(String s)
 	{
-		String noConsonants = "";
-		for(int i = 0; i < s.length(); i++)
-		{
-			char c = s.charAt(i);
-			if(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
-			{
-				noConsonants = noConsonants + s.charAt(i);
-			}
-		}
-		return noConsonants;
+		return Driver.removeChars(s, "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ");	
 	}
 	
 	//returns a new String with digits removed
 	static String removeDigits(String s)
 	{
-		String noDigits = "";
-		for(int i = 0; i < s.length(); i++)
-		{
-			char c = s.charAt(i);
-			if(c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9')
-			{
-				noDigits = noDigits + s.charAt(i);
-			}
-		}
-		return noDigits;
+		return Driver.removeChars(s, "0123456789");
 	}
 	
 	//return the first occurrence in s where c is found or -1 if
