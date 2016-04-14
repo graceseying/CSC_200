@@ -2,15 +2,28 @@ public class Driver
 {
 	public static void main(String[] args)
 	{
-		String s = "hello";
-		String s2 = "elephant";
-		String s3 = "c10wn3d";
-		String integers = "12345";
-		System.out.println(Driver.removeVowels(s2));
-		System.out.println(Driver.stringToInt(integers));
-		
-		
+		String s = "1011";
+		System.out.println(Driver.binaryToInteger(s));
+		//Integer.parseInt() converts String base 10 numbers to int
+		// parseInt class method... typically classes are capitalized
 	}
+	
+	//takes a String representation of a binary # as parameter and return as a int the decimal equivalent
+	//"1011" -> 11
+	static int binaryToInteger(String bin)
+	{
+		int total = 0;
+		int currentPlace = 1;
+		
+		for(int i = bin.length() - 1; i >= 0; i--)
+		{
+			total += Driver.charToInt(bin.charAt(i)) * currentPlace;
+			currentPlace *= 2; 
+		}
+		return total;
+	}
+	
+	
 	
 	//return integer from char parameter
 	static int charToInt(char c)
@@ -21,15 +34,21 @@ public class Driver
 	//converts s (string) into an int
 	static int stringToInt(String s)
 	{
-		int answer = 0;
+		int total = 0;
 		int currentPlace = 1;
+		char currChar;
+		
 		for(int i = s.length() - 1; i >= 0; i--)
 		{
-			answer = Driver.charToInt(s.charAt(i)) * currentPlace; 
-			answer = s.charAt(i++) + 1;
-			answer = currentPlace * 10;
+			currChar = s.charAt(i);
+			if(currChar == '-')
+			{
+				return total * -1; 
+			}
+			total += Driver.charToInt(currChar) * currentPlace; 
+			currentPlace *= 10; 
 		}
-		return answer;
+		return total;
 	}
 	
 	static String removeChars(String s, String charsToRemove)
