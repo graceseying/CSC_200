@@ -2,10 +2,44 @@ public class Driver
 {
 	public static void main(String[] args)
 	{
-		String s = "1011";
-		System.out.println(Driver.binaryToInteger(s));
-		//Integer.parseInt() converts String base 10 numbers to int
-		// parseInt class method... typically classes are capitalized
+		System.out.println(Driver.decimalToBase(14, 2));
+	}
+	
+	static char intToChar(int val)
+	{
+		return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(val);
+	}
+	
+	static String decimalToBase(int decimalNumber, int radix) 
+	{
+		int base = 0;
+		String result = "";
+		
+		while(decimalNumber > 0)
+		{
+			base = decimalNumber % radix; 
+			Driver.intToChar(base);
+			result = base + result;
+			decimalNumber = decimalNumber/radix;		
+		}
+		
+		return result;
+	}
+	
+	
+	static int baseToInteger(String s, int radix)
+	{
+		int total = 0;
+		int currentPlace = 1;
+		char currChar;
+		
+		for(int i = s.length() - 1; i >= 0; i--)
+		{
+			currChar = s.charAt(i);
+			total += Driver.charToInt(currChar) * currentPlace;
+			currentPlace *= radix; 
+		}
+		return total;
 	}
 	
 	//takes a String representation of a binary # as parameter and return as a int the decimal equivalent
@@ -28,7 +62,7 @@ public class Driver
 	//return integer from char parameter
 	static int charToInt(char c)
 	{
-		return "0123456789".indexOf(c);
+		return "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".indexOf(c);
 	}
 	
 	//converts s (string) into an int
