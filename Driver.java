@@ -2,7 +2,40 @@ public class Driver
 {
 	public static void main(String[] args)
 	{
-		System.out.println(Driver.decimalToBase(14, 2));
+		String s = "hello world";
+		char [] answer = Driver.stringToCharArray(s);
+		System.out.println(answer);	
+	}
+	
+	static char [] stringToCharArray(String s)
+	{
+		char [] array = new char[s.length()];
+		for(int i = 0; i < s.length(); i++)
+		{
+			array[i] = s.charAt(i);
+		}
+		return array;
+	}
+	
+	static String substring(String s, int beginPos, int endPos)
+	{
+		String answer = "";
+		for(int i = beginPos; i < endPos; i++)
+		{
+			answer += s.charAt(i);
+		}
+		return answer;
+	}
+	
+	static String substring(String s, int pos)
+	{
+		String answer = "";
+		for(int i = pos; i < s.length(); i++)
+		{
+			answer += s.charAt(i);
+			//answer = answer + s.charAt(i)
+		}
+		return answer;
 	}
 	
 	static char intToChar(int val)
@@ -12,14 +45,11 @@ public class Driver
 	
 	static String decimalToBase(int decimalNumber, int radix) 
 	{
-		int base = 0;
 		String result = "";
 		
 		while(decimalNumber > 0)
 		{
-			base = decimalNumber % radix; 
-			Driver.intToChar(base);
-			result = base + result;
+			result = Driver.intToChar(decimalNumber % radix) + result;
 			decimalNumber = decimalNumber/radix;		
 		}
 		
