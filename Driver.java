@@ -7,30 +7,50 @@ public class Driver
 		int[] arrayOfNumbers = new int[10];
 		Driver.fillArrayWithRandomInts(arrayOfNumbers);
 		Driver.printIntArray(arrayOfNumbers);
-		Driver.sortArray(arrayOfNumbers);
+		Driver.bubbleSort(arrayOfNumbers);
 		Driver.printIntArray(arrayOfNumbers);
 		
 	}
 	
-	//put elements of the array in order
-	static void sortArray(int[] ar)
+	//Homework
+	static void bubbleSort(int[] ar)
 	{
-		boolean order = true;
-		int original = 0;
+		boolean swap = true;
 		int currvalue;
 		
-		while(order)
+		while(swap)
 		{
-			order = false;
-			original++;
-			for(int i = 0; i < ar.length - original; i++)
+			swap = false;
+			for(int i = 0; i < ar.length - 1; i++)
 			{
 				if(ar[i] > ar[i + 1])
 				{
 					currvalue = ar[i];
 					ar[i] = ar[i + 1];
 					ar [i + 1] = currvalue;
-					order = true;
+					swap = true;
+				}
+			}
+		}	
+	}
+	
+	//put elements of the array in order
+	static void sortArray(int[] ar)
+	{
+		boolean swap = true;
+		int currvalue;
+		
+		while(swap)
+		{
+			swap = false;
+			for(int i = 0; i < ar.length - 1; i++)
+			{
+				if(ar[i] > ar[i + 1])
+				{
+					currvalue = ar[i];
+					ar[i] = ar[i + 1];
+					ar [i + 1] = currvalue;
+					swap = true;
 				}
 			}
 		}
